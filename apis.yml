@@ -1,7 +1,28 @@
 aid: purely-b
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/purely-b.png
 name: Purely B
-description: Purely B is a company surfaced as a portfolio company of 500-global and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  PurelyB is a natural superfood and wellness brand founded by Raja Jesrina Arshad,
+  rooted in ancestral Asian health traditions and selling halal-certified, vegan,
+  gluten-free herbal supplements (Pegaga, Tiger Milk Mushroom, Manjakani, Super
+  Immune-C and a SuperKids line) direct to consumers across Malaysia and Singapore.
+  The storefront runs on Shopify and exposes a standards-based agent-commerce
+  surface: a Universal Commerce Protocol (UCP) merchant profile with a hosted MCP
+  shopping server, Shopify Customer Account OAuth/OIDC, and a published llms.txt for
+  AI shopping agents. Surfaced as a 500 Global portfolio company and enriched from
+  its public developer/agent surface.
 url: https://raw.githubusercontent.com/api-evangelist/purely-b/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,9 +32,15 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
+- Wellness
+- E-Commerce
+- Supplements
+- Shopify
+- Agentic Commerce
+- MCP
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -23,3 +50,24 @@ maintainers:
 common:
 - type: Website
   url: https://purelyb.com
+- type: MCPServer
+  url: mcp/purely-b-mcp.yml
+- type: Authentication
+  url: authentication/purely-b-authentication.yml
+- type: Conventions
+  url: conventions/purely-b-conventions.yml
+- type: WellKnown
+  url: well-known/purely-b-well-known.yml
+- type: LLMsTxt
+  url: llms/purely-b-llms.txt
+- type: DomainSecurity
+  url: security/purely-b-domain-security.yml
+- type: PrivacyPolicy
+  url: https://purelyb.com/policies/privacy-policy
+- type: TermsOfService
+  url: https://purelyb.com/policies/terms-of-service
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 7
+  pass: local-v1

@@ -1,0 +1,57 @@
+generated: '2026-07-20'
+method: searched
+source: https://purelyb.com/.well-known/ucp
+name: PurelyB Shopping (UCP)
+status: available
+kind: hosted
+description: >-
+  PurelyB is a Shopify storefront that exposes a hosted, remote MCP server via the
+  Universal Commerce Protocol (UCP, ucp.dev) for agent-driven commerce. The server
+  implements the dev.ucp.shopping service (catalog search, cart, checkout,
+  fulfillment). It is a standards server provisioned by Shopify, not a bespoke
+  PurelyB build.
+protocol:
+  name: Universal Commerce Protocol
+  homepage: https://ucp.dev
+  version: '2026-04-08'
+  supported_versions:
+  - '2026-04-08'
+  - '2026-01-23'
+transport: streamable-http
+endpoints:
+- url: https://purelybhk.myshopify.com/api/ucp/mcp
+  note: Canonical MCP endpoint advertised in the UCP merchant profile.
+- url: https://purelyb.com/api/ucp/mcp
+  note: Storefront-domain alias documented in llms.txt.
+schema: https://ucp.dev/2026-04-08/services/shopping/mcp.openrpc.json
+service: dev.ucp.shopping
+capabilities:
+- dev.ucp.shopping.checkout
+- dev.ucp.shopping.fulfillment
+- dev.ucp.shopping.discount
+handshake:
+  required: true
+  note: >-
+    tools/list is gated behind a UCP discovery handshake — an unauthenticated
+    tools/list returns error -32001 invalid_profile_url ("Missing profile uri").
+    A UCP agent profile URI must be supplied to enumerate tools.
+tools:
+  # Tool names documented in the store's own llms.txt agent flow; canonical schemas
+  # live in the UCP shopping OpenRPC referenced above. Not fabricated — sourced.
+- name: search_catalog
+  summary: Find products matching the buyer's intent across the store catalog.
+- name: create_cart
+  summary: Create a cart and add desired items.
+- name: create_checkout
+  summary: Start the purchase flow for a cart.
+- name: update_checkout
+  summary: Set shipping address and method on a checkout.
+- name: complete_checkout
+  summary: Finalize the purchase; requires explicit buyer payment approval.
+rules:
+- Checkout requires contemporaneous human/buyer approval; agents must not complete payment without it.
+- MCP endpoint is rate-limited per IP; back off on HTTP 429.
+- Pass buyer context (address_country, currency) for accurate pricing/availability.
+alternative:
+  shop_skill: https://shop.app/SKILL.md
+  note: Shopify recommends the cross-store Shop skill (Shop Pay checkout) for buy-for-me agents.

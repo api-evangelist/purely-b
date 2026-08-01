@@ -1,0 +1,37 @@
+generated: '2026-07-20'
+method: searched
+source: https://purelyb.com/llms.txt
+summary: >-
+  Cross-cutting agent/commerce conventions for the PurelyB Shopify storefront, as
+  published in the store's own llms.txt / agents.md and UCP merchant profile.
+auth:
+  browsing: none (public read-only storefront endpoints)
+  transacting: Shopify Customer Account OAuth 2.0 / OIDC (see authentication/)
+  agent_commerce: UCP handshake + buyer-approved checkout (see mcp/)
+rate_limiting:
+  signaled_via: HTTP 429
+  guidance: MCP/commerce endpoints are rate-limited per IP; agents must back off on 429.
+buyer_approval:
+  invariant: Checkout must not complete payment without contemporaneous, explicit buyer consent.
+context_parameters:
+- name: context.address_country
+  purpose: Accurate pricing and availability by destination.
+- name: context.currency
+  purpose: Currency selection for pricing.
+read_only_endpoints:
+- GET /collections/all
+- GET /products/{handle}
+- GET /products/{handle}.json
+- GET /collections/{handle}
+- GET /collections/{handle}/products.json
+- GET /search?q={query}&type=product
+- GET /sitemap.xml
+agent_discovery:
+- /llms.txt
+- /agents.md
+- /.well-known/ucp
+platform: Shopify (UCP-native storefront)
+cross_links:
+  authentication: authentication/purely-b-authentication.yml
+  mcp: mcp/purely-b-mcp.yml
+  well_known: well-known/purely-b-well-known.yml

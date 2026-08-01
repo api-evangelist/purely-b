@@ -1,0 +1,39 @@
+generated: '2026-07-20'
+method: searched
+source: https://purelyb.com/.well-known/openid-configuration
+summary: >-
+  PurelyB customer authentication is Shopify's Customer Account API OAuth 2.0 /
+  OpenID Connect provider. Storefront product browsing is unauthenticated; the
+  customer account + customer-account MCP surfaces are OAuth-protected.
+schemes:
+- id: shopify_customer_account_oauth
+  type: openIdConnect
+  flow: authorization_code
+  pkce: true
+  code_challenge_methods:
+  - S256
+  issuer: https://shopify.com/authentication/4610130033
+  authorization_endpoint: https://account.purelyb.com/authentication/oauth/authorize
+  token_endpoint: https://account.purelyb.com/authentication/oauth/token
+  end_session_endpoint: https://account.purelyb.com/authentication/logout
+  jwks_uri: https://account.purelyb.com/authentication/.well-known/jwks.json
+  token_endpoint_auth_methods_supported:
+  - client_secret_basic
+  grant_types_supported:
+  - authorization_code
+  - refresh_token
+  - urn:ietf:params:oauth:grant-type:jwt-bearer
+  id_token_signing_alg: RS256
+  scopes_supported:
+  - openid
+  - email
+  - customer-account-api:full
+  - customer-account-mcp-api:full
+  response_types_supported:
+  - code
+public_surfaces:
+- description: Read-only storefront browsing requires no authentication (products.json, collections, search).
+  source: https://purelyb.com/llms.txt
+notes:
+- Standards-conformant OIDC (discovery, PKCE S256, RS256 id_token) provisioned by Shopify.
+- op_policy_uri and op_tos_uri point to Shopify legal, confirming platform-managed identity.
