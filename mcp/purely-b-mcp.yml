@@ -2,7 +2,8 @@ generated: '2026-07-20'
 method: searched
 source: https://purelyb.com/.well-known/ucp
 name: PurelyB Shopping (UCP)
-status: available
+status: published
+status_raw: available
 kind: hosted
 description: >-
   PurelyB is a Shopify storefront that exposes a hosted, remote MCP server via the
