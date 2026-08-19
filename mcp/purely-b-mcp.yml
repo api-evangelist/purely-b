@@ -5,12 +5,10 @@ name: PurelyB Shopping (UCP)
 status: published
 status_raw: available
 kind: hosted
-description: >-
-  PurelyB is a Shopify storefront that exposes a hosted, remote MCP server via the
-  Universal Commerce Protocol (UCP, ucp.dev) for agent-driven commerce. The server
-  implements the dev.ucp.shopping service (catalog search, cart, checkout,
-  fulfillment). It is a standards server provisioned by Shopify, not a bespoke
-  PurelyB build.
+description: PurelyB is a Shopify storefront that exposes a hosted, remote MCP server via the Universal
+  Commerce Protocol (UCP, ucp.dev) for agent-driven commerce. The server implements the dev.ucp.shopping
+  service (catalog search, cart, checkout, fulfillment). It is a standards server provisioned by Shopify,
+  not a bespoke PurelyB build.
 protocol:
   name: Universal Commerce Protocol
   homepage: https://ucp.dev
@@ -32,13 +30,10 @@ capabilities:
 - dev.ucp.shopping.discount
 handshake:
   required: true
-  note: >-
-    tools/list is gated behind a UCP discovery handshake — an unauthenticated
-    tools/list returns error -32001 invalid_profile_url ("Missing profile uri").
-    A UCP agent profile URI must be supplied to enumerate tools.
+  note: tools/list is gated behind a UCP discovery handshake — an unauthenticated tools/list returns error
+    -32001 invalid_profile_url ("Missing profile uri"). A UCP agent profile URI must be supplied to enumerate
+    tools.
 tools:
-  # Tool names documented in the store's own llms.txt agent flow; canonical schemas
-  # live in the UCP shopping OpenRPC referenced above. Not fabricated — sourced.
 - name: search_catalog
   summary: Find products matching the buyer's intent across the store catalog.
 - name: create_cart
@@ -56,3 +51,9 @@ rules:
 alternative:
   shop_skill: https://shop.app/SKILL.md
   note: Shopify recommends the cross-store Shop skill (Shop Pay checkout) for buy-for-me agents.
+deployment:
+  mode: remote
+  verified: searched
+  tools: 5
+  checked: '2026-08-12'
+  source: catalog MCP census
