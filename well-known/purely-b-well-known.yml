@@ -2,25 +2,33 @@ generated: '2026-07-20'
 method: searched
 source: https://purelyb.com/.well-known/
 host: purelyb.com
-entries:
-- path: /.well-known/openid-configuration
-  status: 200
-  content_type: application/json
-  file: purely-b-openid-configuration.json
-  note: Shopify Customer Account API OpenID Provider metadata (issuer shopify.com/authentication/4610130033).
-- path: /.well-known/oauth-authorization-server
-  status: 200
-  content_type: application/json
-  file: purely-b-oauth-authorization-server.json
-  note: RFC 8414 authorization-server metadata (identical payload to openid-configuration).
-- path: /.well-known/ucp
-  status: 200
-  content_type: application/json
-  file: purely-b-ucp.json
-  note: Universal Commerce Protocol (ucp.dev) merchant profile; advertises hosted MCP shopping endpoint + capabilities.
-- path: /.well-known/security.txt
-  status: 404
-- path: /.well-known/api-catalog
-  status: 404
-- path: /.well-known/ai-plugin.json
-  status: 404
+hosts:
+- host: purelyb.com
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: purely-b-openid-configuration.json
+    content_type: application/json
+    note: Shopify Customer Account API OpenID Provider metadata (issuer shopify.com/authentication/4610130033).
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: purely-b-oauth-authorization-server.json
+    content_type: application/json
+    note: RFC 8414 authorization-server metadata (identical payload to openid-configuration).
+  - path: /.well-known/ucp
+    status: 200
+    file: purely-b-ucp.json
+    content_type: application/json
+    note: Universal Commerce Protocol (ucp.dev) merchant profile; advertises hosted MCP shopping endpoint
+      + capabilities.
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+x-shape-fix:
+  converted: '2026-08-20'
+  from: entries
+  note: Rewritten into hosts[] -> documents[], the only shape well_known_docs() in score.rb reads. A served
+    .well-known surface recorded in any other shape scores as absent.
