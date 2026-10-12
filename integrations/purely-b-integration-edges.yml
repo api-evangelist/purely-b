@@ -1,0 +1,16 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/purely-b/integrations
+- https://n8n.io/integrations/purely-b/
+- https://composio.dev/toolkits/purely-b
+- https://monid.ai/tools/purely-b
+checked:
+- https://composio.dev/toolkits/purely-b
+- https://monid.ai/tools/purely-b
+- https://n8n.io/integrations/purely-b/
+- https://zapier.com/apps/purely-b/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
